@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Model Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="page">
+        <h1 class="title">ML Model Interface</h1>
+        <h1 class="title">Ingrese los datos:</h1>
+        <form class="form" id="predictForm">
+            <div class="vars">
+                <div class="inputBox">
+                    <input type="text" name="assists_x"></input>
+                    <h1 class="varName">Mean assists last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="blocks_x"></input>
+                    <h1 class="varName">Mean blocks last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="offensive_rebounds_x"></input>
+                    <h1 class="varName">Mean offensive rebounds last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="three_pointers_made_x"></input>
+                    <h1 class="varName">Mean three pointers made last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="turnovers_x"></input>
+                    <h1 class="varName">Mean turnovers last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="field_goal_%_x"></input>
+                    <h1 class="varName">Mean field goal last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="home_x"></input>
+                    <h1 class="varName">Home game?</h1>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="blocks_y"></input>
+                    <h1 class="varName">Mean oponent blocks last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="turnovers_y"></input>
+                    <h1 class="varName">Mean oponent turnovers last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="record_y"></input>
+                    <h1 class="varName">Matches won - Matches lost</h1>
+                </div>
+            </div>
+            <button class="submit" type="submit">Submit</button>
+        </form>
+        <p id="response"></p>
+    </div>
+    <script>
+        document.getElementById('predictForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = document.getElementById("predictForm");
+            const formData = {};
+
+            for (let element of form.elements) {
+                if (element.name) { // Verifica que el elemento tenga un atributo 'name'
+                    formData[element.name] = [element.value]; // Añade al objeto
+                }
+            }
+
+            const finalJson = {
+                data: formData
+            };
+
+            // Convertir el objeto a una cadena JSON
+            const json = JSON.stringify(finalJson);
+
+            const response = await fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: json,
+            });
+            const result = await response.json();
+            let textResult = "";
+            console.log(result)
+            if(result[0] == 1){
+                textResult = "Equipo 1"
+            }
+            else{
+                textResult = "Equipo 2"
+            }
+            document.getElementById('response').innerText = textResult;
+        });
+    </script>
+</body>
+</html>
