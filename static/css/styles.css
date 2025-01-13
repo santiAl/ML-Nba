@@ -42,6 +42,15 @@ html,body{
 
 
 .page{
+    display: flex;
+    flex-direction: column;
     background-color: burlywood;
     height: 100%;
+}
+
+.response{
+    margin-top: 5%;
+    align-self: center;
+    font-size: 40px;
+    color: rgb(58, 112, 212);
 }

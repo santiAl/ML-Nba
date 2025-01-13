@@ -10,6 +10,16 @@
     <div class="page">
         <h1 class="title">ML Model Interface</h1>
         <h1 class="title">Ingrese los datos:</h1>
+        <form class="form" id="namesForm">
+            <div class="inputBox">
+                <input type="text" name="team_1"></input>
+                <h1 class="varName">Team 1 Name</h1>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="team_2"></input>
+                <h1 class="varName">Team 2 Name</h1>
+            </div>
+        </form>
         <form class="form" id="predictForm">
             <div class="vars">
                 <div class="inputBox">
@@ -55,7 +65,7 @@
             </div>
             <button class="submit" type="submit">Submit</button>
         </form>
-        <p id="response"></p>
+        <p class="response" id="response"></p>
     </div>
     <script type="module">
         const production = false;
@@ -90,14 +100,17 @@
             });
             const result = await response.json();
             let textResult = "";
-            console.log(result)
+            const form_names = document.getElementById('namesForm');
+            const team1Name = form_names.elements['team_1'].value;
+            const team2Name = form_names.elements['team_2'].value;
+    
             if(result[0] == 1){
-                textResult = "Equipo 1"
+                textResult = team1Name;
             }
             else{
-                textResult = "Equipo 2"
+                textResult = team2Name;
             }
-            document.getElementById('response').innerText = textResult;
+            document.getElementById('response').innerText = `El ganador es: ${textResult}`;
         });
     </script>
 </body>
