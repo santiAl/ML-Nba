@@ -5,63 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ML Model Interface</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="page">
         <h1 class="title">ML Model Interface</h1>
-        <h1 class="title">Ingrese los datos:</h1>
+        <h1 class="title">Enter the data:</h1>
         <form class="form" id="namesForm">
-            <div class="inputBox">
-                <input type="text" name="team_1"></input>
-                <h1 class="varName">Team 1 Name</h1>
+            <div class="inputBoxNames">
+                <select class="select" name="nba_teams_1" id="nba_teams_1">
+                    <option value="" disabled selected>Choose a team</option>
+                </select>
             </div>
-            <div class="inputBox">
-                <input type="text" name="team_2"></input>
-                <h1 class="varName">Team 2 Name</h1>
+            <div class="inputBoxNames">
+                <select class="select" name="nba_teams_2" id="nba_teams_2">
+                    <option value="" disabled selected>Choose the oponent team</option>
+                </select>
             </div>
         </form>
-        <form class="form" id="predictForm">
+        <form autocomplete="off" class="form" id="predictForm">
             <div class="vars">
                 <div class="inputBox">
-                    <input type="text" name="assists_x"></input>
-                    <h1 class="varName">Mean assists last 10 matches</h1>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="blocks_x"></input>
-                    <h1 class="varName">Mean blocks last 10 matches</h1>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="offensive_rebounds_x"></input>
-                    <h1 class="varName">Mean offensive rebounds last 10 matches</h1>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="three_pointers_made_x"></input>
-                    <h1 class="varName">Mean three pointers made last 10 matches</h1>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="turnovers_x"></input>
-                    <h1 class="varName">Mean turnovers last 10 matches</h1>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="field_goal_%_x"></input>
+                    <input class="input" type="text" name="field_goal_%_x"></input>
                     <h1 class="varName">Mean field goal last 10 matches</h1>
                 </div>
                 <div class="inputBox">
-                    <input type="text" name="home_x"></input>
-                    <h1 class="varName">Home game?</h1>
+                    <input class="input" type="text" name="blocks_x"></input>
+                    <h1 class="varName">Mean blocks last 10 matches</h1>
                 </div>
                 <div class="inputBox">
-                    <input type="text" name="blocks_y"></input>
+                    <input class="input" type="text" name="blocks_y"></input>
                     <h1 class="varName">Mean oponent blocks last 10 matches</h1>
                 </div>
                 <div class="inputBox">
-                    <input type="text" name="turnovers_y"></input>
+                    <input class="input" type="text" name="field_goal_%_y"></input>
+                    <h1 class="varName">Mean oponent field goal last 10 matchest</h1>
+                </div>
+                <div class="inputBox">
+                    <input class="input" type="text" name="recieved_field_goal_%_x"></input>
+                    <h1 class="varName">Mean recieved field goal % last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input class="input" type="text" name="turnovers_y"></input>
                     <h1 class="varName">Mean oponent turnovers last 10 matches</h1>
                 </div>
                 <div class="inputBox">
-                    <input type="text" name="record_y"></input>
+                    <input class="input" type="text" name="recieved_points_x"></input>
+                    <h1 class="varName">Mean oponet recieved points last 10 matches</h1>
+                </div>
+
+                <div class="inputBox">
+                    <input class="input" type="text" name="score_x"></input>
+                    <h1 class="varName">Mean score last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input class="input" type="text" name="recieved_field_goal_%_y"></input>
+                    <h1 class="varName">Mean opoent recieved field goal % last 10 matches</h1>
+                </div>
+
+                <div class="inputBox">
+                    <input class="input" type="text" name="turnovers_x"></input>
+                    <h1 class="varName">Mean turnovers last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input class="input" type="text" name="recieved_points_y"></input>
+                    <h1 class="varName">Mean oponet recieved points last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input class="input" type="text" name="score_y"></input>
+                    <h1 class="varName">Mean oponent score last 10 matches</h1>
+                </div>
+                <div class="inputBox">
+                    <input class="input" type="text" name="record_y"></input>
+                    <h1 class="varName">Oponent - Matches won - Matches lost</h1>
+                </div>
+                <div class="inputBox">
+                    <select class="input" name="home_x" id="home_x">
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    <h1 class="varName">Home game?</h1>
+                </div>
+
+                <div class="inputBox">
+                    <input class="input" type="text" name="record_x"></input>
                     <h1 class="varName">Matches won - Matches lost</h1>
                 </div>
+            </div>
+            <div class="inputBoxNames">
+                <select class="select" name="Model" id="Model">
+                    <option value="0">Random Forest</option>
+                    <option value="1">Mlp</option>
+                </select>
             </div>
             <button class="submit" type="submit">Submit</button>
         </form>
@@ -72,19 +108,115 @@
         const config = {
             apiHost: production? 'http://3.133.153.4:5000' : 'http://127.0.0.1:5000',
         };
+
+        const nbaTeams = [
+            "Atlanta Hawks",
+            "Boston Celtics",
+            "Brooklyn Nets",
+            "Charlotte Hornets",
+            "Chicago Bulls",
+            "Cleveland Cavaliers",
+            "Dallas Mavericks",
+            "Denver Nuggets",
+            "Detroit Pistons",
+            "Golden State Warriors",
+            "Houston Rockets",
+            "Indiana Pacers",
+            "Los Angeles Clippers",
+            "Los Angeles Lakers",
+            "Memphis Grizzlies",
+            "Miami Heat",
+            "Milwaukee Bucks",
+            "Minnesota Timberwolves",
+            "New Orleans Pelicans",
+            "New York Knicks",
+            "Oklahoma City Thunder",
+            "Orlando Magic",
+            "Philadelphia 76ers",
+            "Phoenix Suns",
+            "Portland Trail Blazers",
+            "Sacramento Kings",
+            "San Antonio Spurs",
+            "Toronto Raptors",
+            "Utah Jazz",
+            "Washington Wizards"
+        ];
+        const select1 = document.getElementById("nba_teams_1");
+        const select2 = document.getElementById("nba_teams_2");
+        nbaTeams.forEach(team => {
+                // Crear y agregar opción para el primer select
+                const option1 = document.createElement("option");
+                option1.value = team;
+                option1.textContent = team;
+                select1.appendChild(option1);
+
+                // Crear y agregar opción para el segundo select
+                const option2 = document.createElement("option");
+                option2.value = team;
+                option2.textContent = team;
+                select2.appendChild(option2);
+        });
+
+
         document.getElementById('predictForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const form = document.getElementById("predictForm");
             const formData = {};
+            let errorMessage = "";
+            let isValid = true;
 
             for (let element of form.elements) {
                 if (element.name) { // Verifica que el elemento tenga un atributo 'name'
-                    formData[element.name] = [element.value]; // Añade al objeto
+                let value = element.value.trim();
+                let name = element.name;
+                if (value === "") {
+                    isValid = false;
+                    errorMessage += `El campo ${name} no puede estar vacío.\n`;
+                }
+                if(isNaN(value)){
+                    isValid = false;
+                    errorMessage += `El campo ${name} debe ser un número.\n`;
+                }
+
+                if(name == "field_goal_%_x" || name == "field_goal_%_y" || name == "recieved_field_goal_%_x" || name == "recieved_field_goal_%_y" ){
+                    let parsedValue = parseFloat(value);
+                    if( parsedValue < 0 || parsedValue > 1){
+                        isValid = false;
+                        errorMessage += `El campo ${name} debe ser un número entre 0 y 1.\n`;
+                    }
+                }
+                if(name == 'Model'){
+                    continue;
+                }
+
+                    formData[name] = [value]; // Añade al objeto
                 }
             }
 
+            const form_names = document.getElementById('namesForm');
+            const team1Name = form_names.elements['nba_teams_1'].value;
+            const team2Name = form_names.elements['nba_teams_2'].value;
+
+            if(team1Name == team2Name && team1Name != ""){
+                isValid = false;
+                errorMessage += `Los equipos no pueden ser iguales.\n`;
+            }
+            if(team1Name == "" || team2Name == ""){
+                isValid = false;
+                errorMessage += `Los equipos no pueden estar vacios.\n`;
+            }
+
+            if (!isValid) {
+                alert(errorMessage); // Mostrar errores
+                return;
+            }
+
+            const model = form.elements['Model'].value;
+            console.log(form.elements['Model']);
+            console.log(model);
             const finalJson = {
-                data: formData
+                data: formData ,
+                model: model
             };
 
             // Convertir el objeto a una cadena JSON
@@ -100,9 +232,7 @@
             });
             const result = await response.json();
             let textResult = "";
-            const form_names = document.getElementById('namesForm');
-            const team1Name = form_names.elements['team_1'].value;
-            const team2Name = form_names.elements['team_2'].value;
+
     
             if(result[0] == 1){
                 textResult = team1Name;
@@ -110,7 +240,7 @@
             else{
                 textResult = team2Name;
             }
-            document.getElementById('response').innerText = `El ganador es: ${textResult}`;
+            document.getElementById('response').innerText = `The winner is going to be: ${textResult}`;
         });
     </script>
 </body>

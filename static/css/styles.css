@@ -19,14 +19,74 @@
     width: 20%;
 }
 
+.inputBoxNames{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.select{
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo negro translúcido */
+    color: white; /* Texto blanco */
+    border: 1px solid #FFD700; /* Amarillo dorado, acorde al fondo */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 1%;
+    font-size: 80%;
+    margin: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+
+select:hover, input:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Más oscuro al pasar el mouse */
+    border-color: #FF4500; /* Cambio de color al borde */
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-color: #4CAF50; /* Verde para resaltar */
+    box-shadow: 0 0 5px #4CAF50;
+}
+
+select, input {
+    transition: all 0.1s ease;
+}
+
+.input{
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo negro translúcido */
+    color: white; /* Texto blanco */
+    border: 1px solid #FFD700; /* Amarillo dorado, acorde al fondo */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 1%;
+    font-size: 80%;
+    margin: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+button:hover {
+    background-color: #FF8C00; /* Naranja llamativo */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+}
+
+
+
+
 .varName{
     font-size: 15px;
-    color: rgb(58, 112, 212);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(99, 97, 97, 0.6);    
     align-self: center;
+    font-family: 'Roboto', sans-serif;
 }
 
 .title{
     margin: 0;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(232, 235, 104, 0.6);    
+    font-family: 'Roboto', sans-serif;
 }
 
 html,body{
@@ -38,6 +98,18 @@ html,body{
     height: 40px;
     width: 15%;
     margin-top: 50px;
+    background-color: #FFD700; /* Amarillo dorado */
+    color: black;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* Sombra */
+    transition: all 0.2s ease;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);  
 }
 
 
@@ -46,11 +118,16 @@ html,body{
     flex-direction: column;
     background-color: burlywood;
     height: 100%;
+    background-image: url('../images/wallpaper2.jpg'); /* Ruta de tu imagen */
+    background-size: cover;
+    background-position: center;
 }
 
 .response{
     margin-top: 5%;
     align-self: center;
     font-size: 40px;
-    color: rgb(58, 112, 212);
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(232, 235, 104, 0.6);    
+    font-family: 'Roboto', sans-serif;
 }
