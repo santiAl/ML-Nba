@@ -22,7 +22,7 @@
 .inputBoxNames{
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 30%;
     height: 30px;
     margin-top: 5px;
 }
@@ -53,6 +53,9 @@ select:focus, input:focus {
 select, input {
     transition: all 0.1s ease;
 }
+
+
+
 
 .input{
     background-color: rgba(0, 0, 0, 0.7); /* Fondo negro translúcido */
@@ -90,7 +93,7 @@ button:hover {
 }
 
 html,body{
-    height: 100%;
+    height: 100vh;
     margin: 0;
 }
 
@@ -110,17 +113,21 @@ html,body{
     font-family: 'Roboto', sans-serif;
     color: black;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);  
+    /* Para centrar el texto */
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;      
 }
 
 
 .page{
     display: flex;
     flex-direction: column;
-    background-color: burlywood;
-    height: 100%;
     background-image: url('../images/wallpaper2.jpg'); /* Ruta de tu imagen */
     background-size: cover;
     background-position: center;
+    min-height: 100%;
 }
 
 .response{
@@ -131,3 +138,39 @@ html,body{
     text-shadow: 2px 2px 4px rgba(232, 235, 104, 0.6);    
     font-family: 'Roboto', sans-serif;
 }
+
+/* kpi styles    */
+.kpi-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaciado entre KPIs */
+}
+
+.kpi-box {
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    color: #FFD700; /* Dorado Lakers */
+    border: 2px solid #552583; /* Púrpura Lakers */
+    width: 200px;
+}
+
+.kpi-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #552583; /* Púrpura Lakers */
+}
+
+.kpi-metric {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #FFD700; /* Dorado Lakers */
+}
+

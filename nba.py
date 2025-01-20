@@ -13,6 +13,9 @@ from sklearn.preprocessing import MinMaxScaler
 from xgboost import XGBClassifier
 from joblib import dump
 
+#--------------------------------- No tratar de correr este codigo en tu pc por que la db a la que se accede es local ----------------------------------------------------
+
+
 # Configuración de conexión
 # Para traer los datos de la base de datos
 # La base de datos es local y se encuentra en mi computadora
@@ -254,7 +257,7 @@ full = df_combined.merge(df_combined, left_on=["team_id","start_time_str"], righ
 #full = full.sort_values(by="start_time_str")
 full = full.sort_values(by="start_time_str")
 # Luego de un analisis exploratorio, analizando la matriz de correlacion y los graficos de dispersion, decidi eliminar varias columnas que estaban muy correlacionadas entre si y aportaban informacion redundante.
-full = full.drop(columns=["oponent_id_y","game_id_y","home_y","won_y","team_id_y","free_throw_attempts_x","free_throw_attempts_y","three_pointer_attempts_x","three_pointer_attempts_y","field_goals_made_x","field_goals_made_y",'matches_defeat_y','matches_defeat_x','matches_win_x','matches_win_y','cumulative_percentage_y','cumulative_percentage_x'])   # Columnas que no me interesan
+full = full.drop(columns=["oponent_id_y","game_id_y","home_y","won_y","team_id_y","free_throw_attempts_x","free_throw_attempts_y","three_pointer_attempts_x","three_pointer_attempts_y","field_goals_made_x","field_goals_made_y",'matches_defeat_y','matches_defeat_x','matches_win_x','matches_win_y','cumulative_percentage_y','cumulative_percentage_x'])  
 
 
 
@@ -280,12 +283,16 @@ sfs = SequentialFeatureSelector(rr, n_features_to_select = 5, direction="backwar
 removed_columns = list(full.columns[full.dtypes == 'object']) + ['won_x','team_id_x','oponent_id_x','start_time_str','game_id_x']
 selected_columns = full.columns[~full.columns.isin(removed_columns)]
 
+# Guardamos el csv para luego hacer un analisis en colab.
 full.to_csv("nbaData.csv", index=False)
+
+
+
+
 # Ridge funciona mejor estandatizando.
 scaler = MinMaxScaler()
 full[selected_columns] = scaler.fit_transform(full[selected_columns])   # Escalado de los datos menos los que estan en removed_columns
 full = full.dropna()
-print(full.dtypes)
 # Obtener los predictores seleccionados para rr 
 sfs.fit(full[selected_columns],full["won_x"])
 predictors = list(selected_columns[sfs.get_support()])
@@ -297,13 +304,9 @@ predictors_rf = find_best_features_rf(full,15)
 predictions = test(full,rr,predictors,0.7)
 
 # Para vizualizar los predictores
-print(predictors_rf)
 # Calculo del accuracy para saber la bondad del ajuste
 acc = accuracy_score(predictions['actual'],predictions['prediction'])
 recall = recall_score(predictions['actual'], predictions['prediction'])
-# Para visualizar el accuracy
-print(acc)
-print(recall)
 
 # Guardar el modelo
 #dump(rr, 'rrNbaModel.joblib')
